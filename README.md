@@ -1,9 +1,12 @@
 # FIX Simple Binary Encoding Utilities
 This project contains resources and sample code for FIX Simple Binary Encoding.
 
+## orchestra2sbe
+
+This utility generates a Simple Binary Encoding (SBE) message schema from an Orchestra file. 
 
 ## License
-© Copyright 2016-2018 FIX Protocol Limited
+© Copyright 2016-2020 FIX Protocol Limited
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

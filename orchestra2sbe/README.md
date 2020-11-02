@@ -32,4 +32,4 @@ The input file must conform to the Orchestra XML Schema. Be sure to populate the
  
 [Simple Binary Encoding](https://github.com/FIXTradingCommunity/fix-simple-binary-encoding) standard and XML schema.
 
-[Orchestra resources](https://github.com/FIXTradingCommunity/fix-orchestra) See module `repository2016` for the XML schema
+[Orchestra resources](https://github.com/FIXTradingCommunity/fix-orchestra) See module `repository` for the XML schema

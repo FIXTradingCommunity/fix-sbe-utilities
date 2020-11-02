@@ -16,13 +16,11 @@
  */
 package io.fixprotocol.sbe.transformers;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import io.fixprotocol.orchestra.transformers.RepositoryXslTransformer;
 
 import javax.xml.transform.TransformerException;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
@@ -34,13 +32,13 @@ public class RepositorySbeTransformerTest {
         String[] arr = new String[3];
         arr[0] = Thread.currentThread().getContextClassLoader().getResource("SBE_datatypes.xslt")
                 .getFile();
-        arr[1] = Thread.currentThread().getContextClassLoader().getResource("mit_orders.xml")
+        arr[1] = Thread.currentThread().getContextClassLoader().getResource("trade.xml")
                 .getFile();
         // send output to target so it will get cleaned
         arr[2] = "target/test/OrchestraWithSbeDatatypes.xml";
         RepositoryXslTransformer.main(arr);
         File outFile = new File(arr[2]);
-        Assert.assertTrue(outFile.exists());
+        assertTrue(outFile.exists());
         
 
         arr[0] = Thread.currentThread().getContextClassLoader().getResource("OrchestraToSBE.xslt")
@@ -50,6 +48,6 @@ public class RepositorySbeTransformerTest {
         arr[2] = "target/test/SbeSchema.xml";
         RepositoryXslTransformer.main(arr);
         outFile = new File(arr[2]);
-        Assert.assertTrue(outFile.exists());
+        assertTrue(outFile.exists());
     }
 }

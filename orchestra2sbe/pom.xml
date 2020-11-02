@@ -5,26 +5,52 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.fixprotocol.sbe</groupId>
 	<artifactId>orchestra2sbe</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Generates an SBE message schema from an Orchestra file</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<junit.version>4.11</junit.version>
-		<orchestra.version>1.3.0-RC4-SNAPSHOT</orchestra.version>
+		<java.version>11</java.version>
+		<junit.version>5.6.1</junit.version>
+		<orchestra.version>1.6.7</orchestra.version>
 		<sbe.version>2.0-RC1</sbe.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>io.fixprotocol.orchestra</groupId>
-			<artifactId>repository2016</artifactId>
+			<artifactId>repository-util</artifactId>
 			<version>${orchestra.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
 			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
