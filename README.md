@@ -5,6 +5,10 @@ This project contains resources and sample code for FIX Simple Binary Encoding.
 
 This utility generates a Simple Binary Encoding (SBE) message schema from an Orchestra file. 
 
+## sbe-validator
+
+Validates that an SBE message schema conforms to its XML schema.
+
 ## License
 © Copyright 2016-2020 FIX Protocol Limited
 

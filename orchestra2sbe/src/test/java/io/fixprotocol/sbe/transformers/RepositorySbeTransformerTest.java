@@ -17,7 +17,7 @@
 package io.fixprotocol.sbe.transformers;
 
 import io.fixprotocol.orchestra.transformers.RepositoryXslTransformer;
-
+import io.fixprotocol.sbe.validator.SbeSchemaValidator;
 import javax.xml.transform.TransformerException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,26 +28,58 @@ import java.io.IOException;
 public class RepositorySbeTransformerTest {
   
     @Test
-    public void transformToSbe() throws IOException, TransformerException {
+    public void transformToSbeV1() throws IOException, TransformerException {
         String[] arr = new String[3];
         arr[0] = Thread.currentThread().getContextClassLoader().getResource("SBE_datatypes.xslt")
                 .getFile();
         arr[1] = Thread.currentThread().getContextClassLoader().getResource("trade.xml")
                 .getFile();
         // send output to target so it will get cleaned
-        arr[2] = "target/test/OrchestraWithSbeDatatypes.xml";
+        arr[2] = "target/test/OrchestraWithSbeDatatypesV1.xml";
         RepositoryXslTransformer.main(arr);
         File outFile = new File(arr[2]);
         assertTrue(outFile.exists());
         
 
-        arr[0] = Thread.currentThread().getContextClassLoader().getResource("OrchestraToSBE.xslt")
+        arr[0] = Thread.currentThread().getContextClassLoader().getResource("OrchestraToSBEV1.xslt")
                 .getFile();
-        arr[1] = "target/test/OrchestraWithSbeDatatypes.xml";
+        arr[1] = "target/test/OrchestraWithSbeDatatypesV1.xml";
         // send output to target so it will get cleaned
-        arr[2] = "target/test/SbeSchema.xml";
+        final String schemaFile = "target/test/SbeSchemaV1.xml";
+        arr[2] = schemaFile;
         RepositoryXslTransformer.main(arr);
         outFile = new File(arr[2]);
         assertTrue(outFile.exists());
+        
+        SbeSchemaValidator validator = SbeSchemaValidator.builder().inputFile(schemaFile).build();
+        assertTrue(validator.validate());
+    }
+    
+    @Test
+    public void transformToSbeV2() throws IOException, TransformerException {
+        String[] arr = new String[3];
+        arr[0] = Thread.currentThread().getContextClassLoader().getResource("SBE_datatypes.xslt")
+                .getFile();
+        arr[1] = Thread.currentThread().getContextClassLoader().getResource("trade.xml")
+                .getFile();
+        // send output to target so it will get cleaned
+        arr[2] = "target/test/OrchestraWithSbeDatatypesV2.xml";
+        RepositoryXslTransformer.main(arr);
+        File outFile = new File(arr[2]);
+        assertTrue(outFile.exists());
+        
+
+        arr[0] = Thread.currentThread().getContextClassLoader().getResource("OrchestraToSBEV2.xslt")
+                .getFile();
+        arr[1] = "target/test/OrchestraWithSbeDatatypesV2.xml";
+        // send output to target so it will get cleaned
+        final String schemaFile = "target/test/SbeSchemaV2.xml";
+        arr[2] = schemaFile;
+        RepositoryXslTransformer.main(arr);
+        outFile = new File(arr[2]);
+        assertTrue(outFile.exists());
+        
+        SbeSchemaValidator validator = SbeSchemaValidator.builder().inputFile(schemaFile).schemaFile("xsd/sbe-2.0rc3.xsd").build();
+        assertTrue(validator.validate());
     }
 }
