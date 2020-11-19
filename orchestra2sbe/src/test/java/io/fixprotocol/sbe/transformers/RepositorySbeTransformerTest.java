@@ -51,7 +51,8 @@ public class RepositorySbeTransformerTest {
         outFile = new File(arr[2]);
         assertTrue(outFile.exists());
         
-        SbeSchemaValidator validator = SbeSchemaValidator.builder().inputFile(schemaFile).build();
+        SbeSchemaValidator validator = SbeSchemaValidator.builder().inputFile(schemaFile)
+            .eventLog("target/test/SbeSchemaV1.json").build();
         assertTrue(validator.validate());
     }
     
@@ -79,7 +80,8 @@ public class RepositorySbeTransformerTest {
         outFile = new File(arr[2]);
         assertTrue(outFile.exists());
         
-        SbeSchemaValidator validator = SbeSchemaValidator.builder().inputFile(schemaFile).schemaFile("xsd/sbe-2.0rc3.xsd").build();
+        SbeSchemaValidator validator = SbeSchemaValidator.builder().inputFile(schemaFile)
+            .schemaFile("xsd/sbe-2.0rc3.xsd").eventLog("target/test/SbeSchemaV2.json").build();
         assertTrue(validator.validate());
     }
 }
